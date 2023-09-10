@@ -1,16 +1,39 @@
-<form *ngIf="isloading">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<div class="container mt-5">
+  <p class="display-1">Welcome Again</p>
+  <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="Send()">
+    <div class="col-12">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" formControlName="email" [ngClass]="{
+        'is-valid': loginForm.controls['email'].valid && loginForm.controls['email'].touched,
+        'is-invalid': loginForm.controls['email'].invalid &&loginForm.controls['email'].touched,
+    }"/>
+      <div class="invalid-feedback">
+        <span *ngIf="loginForm.controls['email'].hasError('required')"> Please Enter a valid Email.</span>
+        <span *ngIf="loginForm.controls['email'].hasError('pattern')">Email must be like : example@gmail.com</span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="password" [ngClass]="{
+          'is-valid': loginForm.controls['password'].valid && loginForm.controls['password'].touched,
+          'is-invalid': loginForm.controls['password'].invalid &&loginForm.controls['password'].touched,
+      }"/>
+        <span class="input-group-text">Show/Hide</span>
+        <div class="invalid-feedback">
+          <span *ngIf="loginForm.controls['password'].hasError('required')"> Please Enter a Password.</span>
+        <span *ngIf="loginForm.controls['password'].hasError('minlength')">Password must have atleast 8 Character</span>
+      
+        </div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <div class="col-12 justify-content-center d-flex">
+      <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">login</button>
+    </div>
+  </form>
+  <div>
+    Create an Account ? <a routerLink="/register" class="btn-link">Go to Register</a>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="button" class="btn btn-primary" (click)="Send()">Submit</button>
-</form>
+</div>

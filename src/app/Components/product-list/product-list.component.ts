@@ -10,6 +10,6 @@ import { IProduct } from 'src/app/ViewModels/IProduct';
 export class ProductListComponent {
   products:IProduct[];
   constructor(private PrdServ:ProductService) {
-    this.products= this.PrdServ.getAll()
+    this.products=[]
   }
 }

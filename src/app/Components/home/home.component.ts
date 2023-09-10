@@ -10,11 +10,20 @@ import { IProduct } from 'src/app/ViewModels/IProduct';
 export class HomeComponent implements OnInit {
   products:IProduct[];
   constructor(private PrdServ:ProductService) {
-    this.products= this.PrdServ.getbest()
+    this.products=[]
    }
 
   ngOnInit() {
- 
+    this.PrdServ.getAll().subscribe({
+      next:(response)=>{
+        console.log(response.data)
+        this.products = response.data as IProduct[]
+
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
   }
 
 }

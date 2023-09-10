@@ -1,3 +1,65 @@
-<p>
-  register works!
-</p>
+<div class="container mt-5">
+  <p class="display-1">Join Our App</p>
+  <form class="row g-3" [formGroup]="RegisterForm" (ngSubmit)="register()">
+    <div class="col-12">
+      <label class="form-label">User Name</label>
+      <input type="text" class="form-control" formControlName="name" 
+      [ngClass]="{
+        'is-valid': RegisterForm.controls['name'].valid && RegisterForm.controls['name'].touched,
+        'is-invalid': RegisterForm.controls['name'].invalid &&RegisterForm.controls['name'].touched,
+    }" />
+      <div class="valid-feedback">Looks good!</div>
+      <div class="invalid-feedback">
+        <span *ngIf="RegisterForm.controls['name'].hasError('required')"> Please Enter a valid User Name.</span>
+        <span *ngIf="RegisterForm.controls['name'].hasError('minlength')">User Name must have atleast 3 Character</span>
+      </div>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Phone Number</label>
+      <input type="text" class="form-control" formControlName="phoneNumber" [ngClass]="{
+        'is-valid': RegisterForm.controls['phoneNumber'].valid && RegisterForm.controls['phoneNumber'].touched,
+        'is-invalid': RegisterForm.controls['phoneNumber'].invalid &&RegisterForm.controls['phoneNumber'].touched,
+    }"/>
+      <div class="valid-feedback">Looks good!</div>
+      <div class="invalid-feedback">
+        <span *ngIf="RegisterForm.controls['phoneNumber'].hasError('required')"> Please Enter a valid phoneNumber.</span>
+        <span *ngIf="RegisterForm.controls['phoneNumber'].hasError('minlength')">phoneNumber must have atleast 11 Character</span>
+      
+      </div>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" formControlName="email" [ngClass]="{
+        'is-valid': RegisterForm.controls['email'].valid && RegisterForm.controls['email'].touched,
+        'is-invalid': RegisterForm.controls['email'].invalid &&RegisterForm.controls['email'].touched,
+    }"/>
+      <div class="invalid-feedback">
+        <span *ngIf="RegisterForm.controls['email'].hasError('required')"> Please Enter a valid Email.</span>
+        <span *ngIf="RegisterForm.controls['email'].hasError('pattern')">Email must be like : example@gmail.com</span>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="password" [ngClass]="{
+          'is-valid': RegisterForm.controls['password'].valid && RegisterForm.controls['password'].touched,
+          'is-invalid': RegisterForm.controls['password'].invalid &&RegisterForm.controls['password'].touched,
+      }"/>
+        <span class="input-group-text">Show/Hide</span>
+        <div class="invalid-feedback">
+          <span *ngIf="RegisterForm.controls['password'].hasError('required')"> Please Enter a Password.</span>
+        <span *ngIf="RegisterForm.controls['password'].hasError('minlength')">Password must have atleast 8 Character</span>
+      
+        </div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <div class="col-12 justify-content-center d-flex">
+      <button class="btn btn-primary" type="submit" [disabled]="RegisterForm.invalid">Register</button>
+    </div>
+  </form>
+  <div>
+    Already have an Account ? <a routerLink="/" class="btn-link">Go to Login</a>
+  </div>
+</div>

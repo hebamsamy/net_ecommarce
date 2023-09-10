@@ -15,6 +15,7 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { LayoutComponent } from './Components/layout/layout.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { MovieListComponent } from './Components/movie-list/movie-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MovieListComponent } from './Components/movie-list/movie-list.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
